@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Introduction</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Introduction</h1>
+
+
+
+<p>The purpose of the metagam package is to meta-analyze generalized additive models (GAMs), including generalized additive mixed models (GAMMs). The main application we have in mind is the case in which researchers at different locations have the same type of data, but are not allowed to share the rawdata. The metagam package offers an opportunity to gain statistical power by fitting similar GAMs to the data in each location, removing individual participant data from the model objects such that they can be shared to a common location, and finally obtaining a meta-analytic GAM fit from the individual models. The methodology is described in detail in a paper which will soon (as of January 2020) be public.</p>
+<p>The reason the methods in metagam are needed, is that current meta-analytic approaches mainly focusing on combining model parameters, e.g., regression coefficients or correlations. This approach works well in many cases, but there are many important problems for which it is impractical or impossible to use parametric models. GAMs offer a flexible way to fit various functional forms <span class="citation">Wood (2017)</span>. Some current meta-analytic approaches to GAMs have required exactly the same basis functions and knot placement to be used in the model fitted to each dataset, but this is in general suboptimal and when the range of some explanatory variable differs between cohorts, it may often lead to models that are not identifiable. metagam hence instead combines the model fits (predictions) over some grid specified by the user.</p>
+<div id="basic-usage-example" class="section level1">
+<h1>Basic Usage Example</h1>
+<p>Assume some data of interest are located in three different cohorts. In order to increase statistical power and hence be more able to detect relationships in the data, we would ideally fit a GAM to all three datasets combined, using a model on the form <code>y ~ s(x0) + s(x1) + s(x2)</code>, where <code>y</code> is an outcome of interest and <code>x1</code> and <code>x2</code> are explanatory variables. The smooth functions <code>s()</code> allow the outcome to vary nonlinearly as a function of each explanatory variable. When all three datasets are not available in a single location, we cannot fit a GAM using this mega-analytic approach. The metagam package provides a flexible solution to this problem, which here will be illustrated.</p>
+<p>We start by simulation three datasets using the <code>gamSim()</code> function from mgcv.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(metagam)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw">library</span>(mgcv)</a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="co">## simulate three datasets</span></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb1-5" title="5">datasets &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="cf">function</span>(x) <span class="kw">gamSim</span>(<span class="dt">scale =</span> <span class="dv">3</span>, <span class="dt">verbose =</span> <span class="ot">FALSE</span>))</a></code></pre></div>
+<p>In each data location, we assume a GAM with the generic form <code>y~s(x0)+s(x1)+s(x2)</code> is fit to the data. Notably, model parameters like knot locations, number of basis functions, and smoothing method does not need to be identical in each separate fit. Instead, the parameters can be optimized independently to fit the data in each location.</p>
+<p>Here is an example:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co">## Data location 1</span></a>
+<a class="sourceLine" id="cb2-2" title="2">fit1 &lt;-<span class="st"> </span><span class="kw">gam</span>(y <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(x0, <span class="dt">k =</span> <span class="dv">8</span>, <span class="dt">bs =</span> <span class="st">&quot;cr&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">s</span>(x1, <span class="dt">bs =</span> <span class="st">&quot;cr&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">s</span>(x2, <span class="dt">bs =</span> <span class="st">&quot;cr&quot;</span>), </a>
+<a class="sourceLine" id="cb2-3" title="3">            <span class="dt">data =</span> datasets[[<span class="dv">1</span>]])</a>
+<a class="sourceLine" id="cb2-4" title="4"></a>
+<a class="sourceLine" id="cb2-5" title="5"><span class="co">## Data location 2, use P-splines for the first and third term</span></a>
+<a class="sourceLine" id="cb2-6" title="6">fit2 &lt;-<span class="st"> </span><span class="kw">gam</span>(y <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(x0, <span class="dt">bs =</span> <span class="st">&quot;ps&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">s</span>(x1, <span class="dt">k =</span> <span class="dv">20</span>, <span class="dt">bs =</span> <span class="st">&quot;cr&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">s</span>(x2, <span class="dt">bs =</span> <span class="st">&quot;bs&quot;</span>), </a>
+<a class="sourceLine" id="cb2-7" title="7">            <span class="dt">data =</span> datasets[[<span class="dv">2</span>]])</a>
+<a class="sourceLine" id="cb2-8" title="8"></a>
+<a class="sourceLine" id="cb2-9" title="9"><span class="co">## Data location 3, use maximum likelihood for smoothing</span></a>
+<a class="sourceLine" id="cb2-10" title="10">fit3 &lt;-<span class="st"> </span><span class="kw">gam</span>(y <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(x0, <span class="dt">bs =</span> <span class="st">&quot;cr&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">s</span>(x1, <span class="dt">bs =</span> <span class="st">&quot;cr&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">s</span>(x2, <span class="dt">bs =</span> <span class="st">&quot;cr&quot;</span>), </a>
+<a class="sourceLine" id="cb2-11" title="11">            <span class="dt">data =</span> datasets[[<span class="dv">3</span>]], <span class="dt">method =</span> <span class="st">&quot;ML&quot;</span>)</a></code></pre></div>
+<p>The <code>gam</code> objects <code>fit1</code>, <code>fit2</code>, and <code>fit3</code> contain individual participant data in various forms, and hence there are many cases in which these should not be shared. The function <code>strip_rawdata()</code> from metagam removes all such rawdata. We here illustrate how this function can be applied at each data location in order to obtain a model fit that can be shared.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co">## Data location 1</span></a>
+<a class="sourceLine" id="cb3-2" title="2">fit_no_raw1 &lt;-<span class="st"> </span><span class="kw">strip_rawdata</span>(fit1)</a>
+<a class="sourceLine" id="cb3-3" title="3"></a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="co">## Data location 2</span></a>
+<a class="sourceLine" id="cb3-5" title="5">fit_no_raw2 &lt;-<span class="st"> </span><span class="kw">strip_rawdata</span>(fit2)</a>
+<a class="sourceLine" id="cb3-6" title="6"></a>
+<a class="sourceLine" id="cb3-7" title="7"><span class="co">## Data location 3</span></a>
+<a class="sourceLine" id="cb3-8" title="8">fit_no_raw3 &lt;-<span class="st"> </span><span class="kw">strip_rawdata</span>(fit3)</a></code></pre></div>
+<p>Now assume that the objects <code>fit_no_raw1</code>, <code>fit_no_raw2</code>, and <code>fit_no_raw3</code> have been gathered in a single location. First, we can inspect each of the objects.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">summary</span>(fit_no_raw1)</a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="co">#&gt; GAM stripped for individual participant data with strip_rawdata().</span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="co">#&gt; For meta-analysis of smooth terms, use the following identifiers: s(x0), s(x1), s(x2).</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt; Original output for gam object:</span></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt; Family: gaussian </span></a>
+<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt; Link function: identity </span></a>
+<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt; Formula:</span></a>
+<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt; y ~ s(x0, k = 8, bs = &quot;cr&quot;) + s(x1, bs = &quot;cr&quot;) + s(x2, bs = &quot;cr&quot;)</span></a>
+<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt; Parametric coefficients:</span></a>
+<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt; (Intercept)   8.0156     0.1553   51.62   &lt;2e-16 ***</span></a>
+<a class="sourceLine" id="cb4-16" title="16"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb4-17" title="17"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
+<a class="sourceLine" id="cb4-18" title="18"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb4-19" title="19"><span class="co">#&gt; Approximate significance of smooth terms:</span></a>
+<a class="sourceLine" id="cb4-20" title="20"><span class="co">#&gt;         edf Ref.df      F  p-value    </span></a>
+<a class="sourceLine" id="cb4-21" title="21"><span class="co">#&gt; s(x0) 3.746  4.565  5.782 8.48e-05 ***</span></a>
+<a class="sourceLine" id="cb4-22" title="22"><span class="co">#&gt; s(x1) 2.466  3.070 49.388  &lt; 2e-16 ***</span></a>
+<a class="sourceLine" id="cb4-23" title="23"><span class="co">#&gt; s(x2) 7.493  8.416 33.457  &lt; 2e-16 ***</span></a>
+<a class="sourceLine" id="cb4-24" title="24"><span class="co">#&gt; ---</span></a>
+<a class="sourceLine" id="cb4-25" title="25"><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
+<a class="sourceLine" id="cb4-26" title="26"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb4-27" title="27"><span class="co">#&gt; R-sq.(adj) =  0.537   Deviance explained = 55.3%</span></a>
+<a class="sourceLine" id="cb4-28" title="28"><span class="co">#&gt; GCV = 10.013  Scale est. = 9.645     n = 400</span></a></code></pre></div>
+<p>We can now perform a meta-analysis of these fits using the <code>metagam()</code> function. We gather them in a list:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">models &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">cohort1 =</span> fit_no_raw1, </a>
+<a class="sourceLine" id="cb5-2" title="2">               <span class="dt">cohort2 =</span> fit_no_raw2, </a>
+<a class="sourceLine" id="cb5-3" title="3">               <span class="dt">cohort3 =</span> fit_no_raw3)</a></code></pre></div>
+<p>It is typically most convenient to analyze a single smooth term at a time. We start with the term <code>s(x0)</code>, and set <code>grid_size=100</code> to get 100 equally spaced values of <code>x0</code> within the range of values encountered in the three model fits. The summary method prints out some information as well as meta-analytic p-values for the term.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">metafit &lt;-<span class="st"> </span><span class="kw">metagam</span>(models, <span class="dt">terms =</span> <span class="st">&quot;s(x0)&quot;</span>)</a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="kw">summary</span>(metafit)</a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="co">#&gt; Meta-analysis of GAMs from 3 cohorts, using method FE.</span></a>
+<a class="sourceLine" id="cb6-4" title="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb6-5" title="5"><span class="co">#&gt; Smooth terms analyzed: s(x0) .</span></a>
+<a class="sourceLine" id="cb6-6" title="6"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb6-7" title="7"><span class="co">#&gt; Meta-analytic p-values of smooth terms:</span></a>
+<a class="sourceLine" id="cb6-8" title="8"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb6-9" title="9"><span class="co">#&gt; Test                    s(x0)     </span></a>
+<a class="sourceLine" id="cb6-10" title="10"><span class="co">#&gt; ----------------------  ----------</span></a>
+<a class="sourceLine" id="cb6-11" title="11"><span class="co">#&gt; Stouffer&#39;s sum of z     1.435e-05 </span></a>
+<a class="sourceLine" id="cb6-12" title="12"><span class="co">#&gt; Edgington&#39;s sum of p    1.186e-04 </span></a>
+<a class="sourceLine" id="cb6-13" title="13"><span class="co">#&gt; Wilkinson&#39;s maximum p   2.717e-04 </span></a>
+<a class="sourceLine" id="cb6-14" title="14"><span class="co">#&gt; Wilkinson&#39;s minimum p   2.545e-04 </span></a>
+<a class="sourceLine" id="cb6-15" title="15"><span class="co">#&gt; logit p method          2.070e-05 </span></a>
+<a class="sourceLine" id="cb6-16" title="16"><span class="co">#&gt; Fisher&#39;s sum of logs    1.906e-05</span></a></code></pre></div>
+<p>The default plotting function shows the fits on the separate datasets together with the meta-analytic fit.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">plot</span>(metafit)</a></code></pre></div>
+<p><img src="data:image/png;base64,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" width="60%" style="display: block; margin: auto;" /></p>
+<p>Dominance plots and heterogeneity plots can also be created. These are described in separate vignettes.</p>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references">
+<div id="ref-Wood2017">
+<p>Wood, S.N. 2017. <em>Generalized Additive Models: An Introduction with R</em>. 2nd ed. Chapman; Hall/CRC.</p>
+</div>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

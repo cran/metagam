@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Dominance Plots</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Dominance Plots</h1>
+
+
+
+<div id="simulation" class="section level2">
+<h2>Simulation</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(metagam)</a></code></pre></div>
+<p>Create 5 datasets from standard gam example #1. The noise parameter is scaled, such that the first GAM has lowest noise and the last has highest noise. In a dominance plot, we plot the relative contributions of each dataset on the prediction. By the way we generated the data, we expect largest influence by dataset 1 and lowest by dataset 5.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co">## simulate datasets</span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw">set.seed</span>(<span class="dv">123</span>)</a>
+<a class="sourceLine" id="cb2-3" title="3">datasets &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="dv">1</span><span class="op">:</span>num.datasets, <span class="cf">function</span>(x) mgcv<span class="op">::</span><span class="kw">gamSim</span>(<span class="dt">scale =</span> x, <span class="dt">verbose =</span> <span class="ot">FALSE</span>))</a></code></pre></div>
+<p>Delete all data in the first dataset that has values lower than .2 on the dimension <code>x2</code>. Thus, we expect a low (ie., zero) contribution of the first dataset on low values of dimensions <code>x2</code>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">df &lt;-<span class="st"> </span>datasets[[<span class="dv">1</span>]]</a>
+<a class="sourceLine" id="cb3-2" title="2">df[df<span class="op">$</span>x2<span class="op">&lt;</span><span class="fl">0.2</span>,] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb3-3" title="3">datasets[[<span class="dv">1</span>]] &lt;-<span class="st"> </span>df</a></code></pre></div>
+<p>Next, delete all values of the second dataset for large values (<code>x2</code>&gt;.8).</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">df &lt;-<span class="st"> </span>datasets[[<span class="dv">2</span>]]</a>
+<a class="sourceLine" id="cb4-2" title="2">df[df<span class="op">$</span>x2 <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.8</span>, ] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb4-3" title="3">datasets[[<span class="dv">2</span>]] &lt;-<span class="st"> </span>df</a></code></pre></div>
+</div>
+<div id="fit-gams" class="section level2">
+<h2>Fit GAMs</h2>
+<p>Next, we fit the indivial GAMs for each of the eight datasets.</p>
+</div>
+<div id="meta-analysis" class="section level2">
+<h2>Meta-Analysis</h2>
+<p>Then, we analyze the term <code>s(x2)</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">meta_analysis &lt;-<span class="st"> </span><span class="kw">metagam</span>(models, <span class="dt">grid_size =</span> <span class="dv">500</span>, <span class="dt">terms =</span> <span class="st">&quot;s(x2)&quot;</span>, <span class="dt">intercept =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+</div>
+<div id="dominance-analysis" class="section level2">
+<h2>Dominance Analysis</h2>
+<p>Finally, we create a dominance plot that tells us how much the points on axis <code>x2</code> are influenced by the individual GAMs. We see that the influence of the GAMs is graded according to the simulated noise levels. Second, we see that on the left-hand side, the influence of the first dataset is almost zero whereas the influence of the second dataset is almost zero on the righthand side.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">plot_dominance</span>(meta_analysis)</a></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
