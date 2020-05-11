@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# metagam
+# metagam <img src="man/figures/logo.png" height=200 align="right"/>
 
 <!-- badges: start -->
 
@@ -46,6 +46,13 @@ welcome, either by filing an
 Request](https://github.com/lifebrain/metagam/pulls).
 
 ## Installation
+
+Install the current release of `metagam` from
+[CRAN](https://cran.r-project.org/) with:
+
+``` r
+install.packages("metagam")
+```
 
 Install the current development version of `metagam` from
 [GitHub](https://github.com/) with:
@@ -136,7 +143,6 @@ Approach to Dose-Response Meta-Analysis of Aggregated Data.”
 Schwartz, Joel, and Antonella Zanobetti. 2000. “Using Meta-Smoothing to
 Estimate Dose-Response Trends Across Multiple Studies, with Application
 to Air Pollution and Daily Death.” *Epidemiology* 11 (6): 666–72.
-<http://www.jstor.org/stable/3703820>.
 
 </div>
 
