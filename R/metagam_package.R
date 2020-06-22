@@ -17,4 +17,21 @@
 #' @docType package
 #' @name metagam-package
 #'
+#' @importFrom rlang expr enquo enquos sym syms .data := as_name as_label
+#' @aliases expr enquo enquos sym syms .data := as_name as_label
+#' @export expr enquo enquos sym syms .data := as_name as_label
+#'
 NULL
+
+
+.onAttach <- function(libname, pkgname) {
+  if(!requireNamespace("multtest", quietly = TRUE)){
+    packageStartupMessage(paste0("Welcome to metagam\n\n",
+                                "For the package to work properly, please install 'multtest':\n",
+                                "if (!requireNamespace('BiocManager', quietly = TRUE)) install.packages('BiocManager')\n",
+                                "BiocManager::install('multtest')"
+                                ))
+
+  }
+
+}

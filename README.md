@@ -47,12 +47,16 @@ Request](https://github.com/lifebrain/metagam/pulls).
 
 ## Installation
 
-Install the current release of `metagam` from
+Install the current release of metagam from
 [CRAN](https://cran.r-project.org/) with:
 
 ``` r
-install.packages("metagam")
+# install.packages("BiocManager")
+BiocManager::install("metagam")
 ```
+
+BiocManager is necessary because metagam depends on the Bioconductor
+package [multtest](https://www.bioconductor.org/packages/multtest/).
 
 Install the current development version of `metagam` from
 [GitHub](https://github.com/) with:
@@ -127,7 +131,7 @@ By contributing to this project, you agree to abide by its terms.
 
 ## References
 
-<div id="refs" class="references">
+<div id="refs" class="references hanging-indent">
 
 <div id="ref-Crippa2018">
 

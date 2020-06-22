@@ -1,7 +1,7 @@
 Package: metagam
 Type: Package
 Title: Meta-Analysis of Generalized Additive Models
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: c(person("Oystein", "Sorensen", 
                     email = "oystein.sorensen@psykologi.uio.no", 
                     role = c("aut", "cre"),
@@ -27,21 +27,20 @@ Description: Meta-analysis of generalized additive
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-biocViews:
 Imports: dplyr, furrr, ggplot2, knitr, metafor, metap, purrr, rlang,
-        stringr, tidyr, viridis
+        stringr, tidyr
 RoxygenNote: 7.1.0
-Suggests: future, mgcv, gamm4, gratia, roxygen2, rmarkdown, devtools,
-        covr, testthat (>= 2.1.0)
+Suggests: future, multtest, mgcv, gamm4, gratia, roxygen2, rmarkdown,
+        devtools, covr, viridis, testthat (>= 2.1.0)
 URL: https://lifebrain.github.io/metagam/,
         https://github.com/Lifebrain/metagam
 BugReports: https://github.com/Lifebrain/metagam/issues
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2020-05-11 12:39:34 UTC; oyss
+Packaged: 2020-06-22 16:14:25 UTC; oyss
 Author: Oystein Sorensen [aut, cre] (<https://orcid.org/0000-0003-0724-3542>),
   Andreas M. Brandmaier [aut] (<https://orcid.org/0000-0001-8765-6982>),
   Athanasia Mo Mowinckel [aut] (<https://orcid.org/0000-0002-5756-0223>)
 Maintainer: Oystein Sorensen <oystein.sorensen@psykologi.uio.no>
 Repository: CRAN
-Date/Publication: 2020-05-11 16:10:08 UTC
+Date/Publication: 2020-06-22 18:30:03 UTC
