@@ -28,7 +28,7 @@ that the resulting object can be shared to a central location. Next,
 metagam provides functions for meta-analysing these fitted GAMs using
 pointwise meta-analysis, as well as plotting and summary methods for
 analyzing the meta-analytic fits. The methods implemented are described
-in Sørensen et al. (2020), extending upon previous works by Schwartz and
+in Sorensen et al. (2021), extending upon previous works by Schwartz and
 Zanobetti (2000) and Crippa, Thomas, and Orsini (2018).
 
 Currently, GAMs objects created with the following functions are
@@ -72,7 +72,7 @@ remotes::install_github("lifebrain/metagam")
 library(metagam)
 library(mgcv)
 #> Loading required package: nlme
-#> This is mgcv 1.8-31. For overview type 'help("mgcv-package")'.
+#> This is mgcv 1.8-33. For overview type 'help("mgcv-package")'.
 ```
 
 Simulate three datasets and fit a GAM to each of them. Then use
@@ -109,14 +109,14 @@ summary(meta_analysis)
 #> 
 #> Meta-analytic p-values of smooth terms:
 #> 
-#> Test                    s(x2)     
-#> ----------------------  ----------
-#> Stouffer's sum of z     2.547e-46 
-#> Edgington's sum of p    6.158e-48 
-#> Wilkinson's maximum p   1.000e-48 
-#> Wilkinson's minimum p   3.000e-16 
-#> logit p method          1.628e-19 
-#> Fisher's sum of logs    6.219e-45
+#> |Test                  |s(x2)     |
+#> |:---------------------|:---------|
+#> |Stouffer's sum of z   |2.547e-46 |
+#> |Edgington's sum of p  |6.158e-48 |
+#> |Wilkinson's maximum p |1.000e-48 |
+#> |Wilkinson's minimum p |3.000e-16 |
+#> |logit p method        |1.628e-19 |
+#> |Fisher's sum of logs  |6.219e-45 |
 ```
 
 For further documentation and vignettes, please visit the [package
@@ -150,13 +150,13 @@ to Air Pollution and Daily Death.” *Epidemiology* 11 (6): 666–72.
 
 </div>
 
-<div id="ref-Sorensen2020">
+<div id="ref-Sorensen2021">
 
-Sørensen, Øystein, Andreas M Brandmaier, Didac Macia Bros, Klaus
-Ebmeier, Paolo Ghisletta, Rogier A Kievit, Athanasia M Mowinckel,
-Kristine B Walhovd, Rene Westerhausen, and Anders Fjell. 2020.
-“Meta-Analysis of Generalized Additive Models in Neuroimaging
-Studies.” <http://arxiv.org/abs/2002.02627>.
+Sorensen, Oystein, Andreas M. Brandmaier, Didac Macia, Klaus Ebmeier,
+Paolo Ghisletta, Rogier A. Kievit, Athanasia M. Mowinckel, Kristine B.
+Walhovd, Rene Westerhausen, and Anders Fjell. 2021. “Meta-Analysis of
+Generalized Additive Models in Neuroimaging Studies.” *NeuroImage* 224
+(January): 117416. <https://doi.org/10.1016/j.neuroimage.2020.117416>.
 
 </div>
 
