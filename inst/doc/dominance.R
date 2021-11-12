@@ -3,7 +3,7 @@ knitr::opts_chunk$set(echo = TRUE)
 num.datasets <- 5
 
 ## -----------------------------------------------------------------------------
-library(metagam)
+library("metagam")
 
 ## -----------------------------------------------------------------------------
 ## simulate datasets
@@ -34,7 +34,5 @@ models <- lapply(datasets, function(dat){
 meta_analysis <- metagam(models, grid_size = 500, terms = "s(x2)", intercept = TRUE)
 
 ## -----------------------------------------------------------------------------
-library(viridis)
-plot_dominance(meta_analysis) +
-  scale_fill_viridis(discrete = TRUE)
+plot_dominance(meta_analysis)
 

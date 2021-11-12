@@ -5,16 +5,12 @@
 
 <!-- badges: start -->
 
-[![Travis build
-status](https://travis-ci.org/lifebrain/metagam.svg?branch=master)](https://travis-ci.org/lifebrain/metagam)
-[![AppVeyor build
-status](https://ci.appveyor.com/api/projects/status/github/Lifebrain/metagam?branch=master&svg=true)](https://ci.appveyor.com/project/Lifebrain/metagam)
-[![Codecov test
-coverage](https://codecov.io/gh/Lifebrain/metagam/branch/master/graph/badge.svg)](https://codecov.io/gh/Lifebrain/metagam?branch=master)
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![codecov](https://codecov.io/gh/Lifebrain/metagam/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Lifebrain/metagam)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/metagam)](https://CRAN.R-project.org/package=metagam)
+[![R-CMD-check](https://github.com/Lifebrain/metagam/workflows/R-CMD-check/badge.svg)](https://github.com/Lifebrain/metagam/actions)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
 ## Overview
@@ -34,9 +30,9 @@ Zanobetti (2000) and Crippa, Thomas, and Orsini (2018).
 Currently, GAMs objects created with the following functions are
 supported:
 
-  - From package [mgcv](https://cran.r-project.org/package=mgcv):
+-   From package [mgcv](https://cran.r-project.org/package=mgcv):
     `bam()`, `gam()` and `gamm()`.
-  - From package [gamm4](https://cran.r-project.org/package=gamm4):
+-   From package [gamm4](https://cran.r-project.org/package=gamm4):
     `gamm4()`.
 
 This package is under development, so changes to the interface can be
@@ -51,12 +47,8 @@ Install the current release of metagam from
 [CRAN](https://cran.r-project.org/) with:
 
 ``` r
-# install.packages("BiocManager")
-BiocManager::install("metagam")
+install.packages("metagam")
 ```
-
-BiocManager is necessary because metagam depends on the Bioconductor
-package [multtest](https://www.bioconductor.org/packages/multtest/).
 
 Install the current development version of `metagam` from
 [GitHub](https://github.com/) with:
@@ -69,10 +61,10 @@ remotes::install_github("lifebrain/metagam")
 ## Application Example
 
 ``` r
-library(metagam)
-library(mgcv)
+library("metagam")
+library("mgcv")
 #> Loading required package: nlme
-#> This is mgcv 1.8-33. For overview type 'help("mgcv-package")'.
+#> This is mgcv 1.8-38. For overview type 'help("mgcv-package")'.
 ```
 
 Simulate three datasets and fit a GAM to each of them. Then use
@@ -97,26 +89,10 @@ participant data. We can then meta-analyze them using `metagam()`.
 
 ``` r
 meta_analysis <- metagam(models)
-#> 
-#> Attaching package: 'purrr'
-#> The following object is masked from 'package:testthat':
-#> 
-#>     is_null
 summary(meta_analysis)
 #> Meta-analysis of GAMs from 3 cohorts, using method FE.
 #> 
-#> Smooth terms analyzed: s(x2) .
-#> 
-#> Meta-analytic p-values of smooth terms:
-#> 
-#> |Test                  |s(x2)     |
-#> |:---------------------|:---------|
-#> |Stouffer's sum of z   |2.547e-46 |
-#> |Edgington's sum of p  |6.158e-48 |
-#> |Wilkinson's maximum p |1.000e-48 |
-#> |Wilkinson's minimum p |3.000e-16 |
-#> |logit p method        |1.628e-19 |
-#> |Fisher's sum of logs  |6.219e-45 |
+#> Smooth terms analyzed: s(x2).
 ```
 
 For further documentation and vignettes, please visit the [package
@@ -131,9 +107,9 @@ By contributing to this project, you agree to abide by its terms.
 
 ## References
 
-<div id="refs" class="references hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
-<div id="ref-Crippa2018">
+<div id="ref-Crippa2018" class="csl-entry">
 
 Crippa, Alessio, Ilias Thomas, and Nicola Orsini. 2018. “A Pointwise
 Approach to Dose-Response Meta-Analysis of Aggregated Data.”
@@ -142,7 +118,7 @@ Approach to Dose-Response Meta-Analysis of Aggregated Data.”
 
 </div>
 
-<div id="ref-Schwarz2000">
+<div id="ref-Schwarz2000" class="csl-entry">
 
 Schwartz, Joel, and Antonella Zanobetti. 2000. “Using Meta-Smoothing to
 Estimate Dose-Response Trends Across Multiple Studies, with Application
@@ -150,7 +126,7 @@ to Air Pollution and Daily Death.” *Epidemiology* 11 (6): 666–72.
 
 </div>
 
-<div id="ref-Sorensen2021">
+<div id="ref-Sorensen2021" class="csl-entry">
 
 Sorensen, Oystein, Andreas M. Brandmaier, Didac Macia, Klaus Ebmeier,
 Paolo Ghisletta, Rogier A. Kievit, Athanasia M. Mowinckel, Kristine B.

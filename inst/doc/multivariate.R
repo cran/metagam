@@ -23,8 +23,7 @@ mod <- gam(y ~ te(x, z), data = datasets[[1]])
 summary(mod)
 
 ## -----------------------------------------------------------------------------
-library(gratia)
-draw(mod)
+vis.gam(mod, view = c("x", "z"), plot.type = "contour")
 
 ## -----------------------------------------------------------------------------
 fits <- lapply(datasets, function(dat){
