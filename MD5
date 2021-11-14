@@ -1,6 +1,6 @@
-e876f9ac2f14aeb65eaf273a62989e86 *DESCRIPTION
+6c4ba0f4e8e51e66e37740034778c8e8 *DESCRIPTION
 6958b878304fa05a46289ae330ec3bb3 *NAMESPACE
-90cb61612f56c181b4f7b85239e08639 *R/metagam.R
+29af22b9238eb306e458e8733798aa12 *R/metagam.R
 e9ff44b09b84c5243afbdccda65be4c0 *R/metagam_package.R
 fd63ef2226db8217f8eed294b714456b *R/misc.R
 38144d5b8d56ab4d4d0c02e8a049aa85 *R/plot_dominance.R
@@ -48,7 +48,7 @@ ffc4e958abb567a2108c73635d7f2506 *man/summary.metagam.Rd
 5b9cf3b466a56e4ae812459f8cf44fbc *man/summary.striprawdata.Rd
 dde9ec5561f68f5faf23f0cfe3417c8f *tests/testdata/fullfits_gamm4.rda
 a134b3ff24d2f3a41ea1688cfdd561eb *tests/testthat.R
-c4df517a37860ceddcbb9ed9c0bcbb2a *tests/testthat/test-metagam.R
+648138cdc1432264ff593f5bb367e56b *tests/testthat/test-metagam.R
 3e811ef6ea0cb2cc693ac855f2ab257a *tests/testthat/test-strip_rawdata.R
 621b14b67ecb337972d46bee73de0fbb *vignettes/dominance.Rmd
 5ff6de4265392d419205a103e23137e6 *vignettes/figures/quantile_plot.png
