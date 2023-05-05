@@ -47,15 +47,15 @@ method to work. Future updates to this package will fix this.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{list}: Strip rawdata from list object returned by gamm4
+\item \code{strip_rawdata(list)}: Strip rawdata from list object returned by gamm4
 
-\item \code{gamm}: Strip rawdata from gamm object
+\item \code{strip_rawdata(gamm)}: Strip rawdata from gamm object
 
-\item \code{bam}: Strip rawdata from gam object
+\item \code{strip_rawdata(bam)}: Strip rawdata from gam object
 
-\item \code{gam}: Strip rawdata from gam object
+\item \code{strip_rawdata(gam)}: Strip rawdata from gam object
+
 }}
-
 \examples{
 library(metagam)
 library(mgcv)
@@ -80,11 +80,16 @@ meta_analysis <- metagam(models, terms = "s(x1)", grid_size = 30)
 ## We can print some information
 summary(meta_analysis)
 
-## We can plot the fit
+## We can plot the meta-analytic fit together with the individual fits
 plot(meta_analysis)
+plot(meta_analysis, ci = "pointwise")
 
 ## We can also compute p-values and simultaneous confidence intervals, by setting the nsim argument.
 ## For details, see the separate vignette.
-meta_analysis <- metagam(models, terms = "s(x0)", grid_size = 30, nsim = 1000)
-summary(meta_analysis)
+\dontrun{
+  meta_analysis <- metagam(models, terms = "s(x0)", grid_size = 30, nsim = 1000)
+  summary(meta_analysis)
+  plot(meta_analysis, ci = "both")
+  plot(meta_analysis, ci = "simultaneous")
+}
 }

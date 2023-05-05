@@ -1,15 +1,14 @@
 ## ---- include = FALSE---------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.width = 4
 )
 
 ## ----setup--------------------------------------------------------------------
 library("metagam")
 library("mgcv")
 library("metafor")
-library("ggplot2")
-theme_set(theme_bw())
 
 ## ---- echo=FALSE--------------------------------------------------------------
 simulate_data <- function(){
@@ -24,13 +23,13 @@ simulate_data <- function(){
 set.seed(1)
 dd <- simulate_data()
 
-ggplot(dd$dat1, aes(x = x, y = y)) + 
-  geom_point() + 
-  ggtitle("Dataset 1")
 
-ggplot(dd$dat2, aes(x = x, y = y)) + 
-  geom_point() + 
-  ggtitle("Dataset 2")
+for(i in seq_along(dd)){
+  plot(dd[[i]]$x, dd[[i]]$y, 
+       xlab = "x", ylab = "y", main = paste("Dataset", i))
+}
+
+
 
 
 ## -----------------------------------------------------------------------------
@@ -45,17 +44,15 @@ models <- list(strip_rawdata(mod1), strip_rawdata(mod2))
 metafit <- metagam(models)
 
 ## -----------------------------------------------------------------------------
-ggplot(metafit$meta_estimates, aes(x = x, y = estimate, ymin = ci.lb, ymax = ci.ub)) + 
-  geom_line() + 
-  geom_ribbon(alpha = .3) + 
-  geom_hline(yintercept = 0, linetype = "dashed")
+plot(metafit, ci = "pointwise", legend = FALSE)
 
 ## -----------------------------------------------------------------------------
 metafit$pvals
 
 ## ---- eval=FALSE--------------------------------------------------------------
 #  library("metap")
-#  allmetap(p = metafit$pvals$`p-value`, method = "all")
+#  allmetap(p = unlist(lapply(metafit$pvals, function(x) as.data.frame(x)[, "p-value"])),
+#           method = "all")
 
 ## ---- echo=FALSE--------------------------------------------------------------
 structure(list(p = list(logitp = 5.61819601706602e-07, maximump = 1.25713383795263e-06, 
@@ -83,14 +80,14 @@ mod <- gam(y ~ s(x0, bs = "cr"), data = dat)
 plot(mod)
 
 ## -----------------------------------------------------------------------------
-grid <- with(dat, data.frame(x0 = seq(min(x0), max(x0), length = 200)))
-masd <- getmasd(mod, grid, 10000, terms = "s(x0)")
+newdat <- with(dat, data.frame(x0 = seq(min(x0), max(x0), length = 200)))
+masd <- getmasd(mod, newdat = newdat, nsim = 1000, term = "s(x0)")
 (crit <- quantile(masd, prob = .95, type = 8))
 
 ## -----------------------------------------------------------------------------
-fit <- predict(mod, newdata = grid, se.fit = TRUE)
+fit <- predict(mod, newdata = newdat, se.fit = TRUE)
 dat <- data.frame(
-  x0 = grid$x0,
+  x0 = newdat$x0,
   pred = fit$fit,
   ci_pt_lb = fit$fit + qnorm(.025) * fit$se.fit,
   ci_pt_ub = fit$fit + qnorm(.975) * fit$se.fit,
@@ -98,10 +95,22 @@ dat <- data.frame(
   ci_sim_ub = fit$fit + crit * fit$se.fit
 )
 
-ggplot(dat, aes(x = x0, y = pred)) + 
-  geom_line() + 
-  geom_ribbon(aes(ymin = ci_pt_lb, ymax = ci_pt_ub), alpha = .3) + 
-  geom_ribbon(aes(ymin = ci_sim_lb, ymax = ci_sim_ub), alpha = .3)
+plot(dat$x0, dat$pred, type = "l",
+     ylim = range(dat$ci_sim_lb, dat$ci_sim_ub), 
+     xlab = "x0", ylab = "s(x0)")
+polygon(
+  x = c(rev(dat$x0), dat$x0), y = c(rev(dat$ci_sim_ub), dat$ci_sim_lb),
+  col = "gray80", border = NA
+)
+polygon(
+  x = c(rev(dat$x0), dat$x0), y = c(rev(dat$ci_pt_ub), dat$ci_pt_lb),
+  col = "gray60", border = NA
+)
+lines(dat$x0, dat$pred)
+
+legend(x = "bottom", legend = c("Pointwise", "Simultaneous"),
+       fill = c("gray60", "gray80"))
+
 
 ## -----------------------------------------------------------------------------
 set.seed(124)
@@ -111,17 +120,13 @@ models <- lapply(datasets, function(dat){
   model <- gam(y ~ s(x2, bs = "cr"), data = dat)
   strip_rawdata(model)
 })
+names(models) <- paste("Model", letters[1:5])
 
 meta_analysis <- metagam(models, terms = "s(x2)", grid_size = 100,
                          nsim = 10000, ci_alpha = .05)
 
-## -----------------------------------------------------------------------------
-sim_conf <- meta_analysis$sim_ci
-ptw_conf <- meta_analysis$meta_estimates
-ggplot(sim_conf, aes(x = x2)) + 
-  geom_line(aes(y = pred)) + 
-  geom_ribbon(aes(ymin = ci_sim_lb, ymax = ci_sim_ub), alpha = .3) + 
-  geom_ribbon(data = ptw_conf, aes(ymin = ci.lb, ymax = ci.ub), alpha = .3)
+## ---- fig.height=6, fig.width=6-----------------------------------------------
+plot(meta_analysis, ci = "both", legend = TRUE)
 
 ## -----------------------------------------------------------------------------
 summary(meta_analysis)
@@ -136,7 +141,8 @@ summary(meta_analysis)
 #        mod <- mgcv::gam(y ~ s(x, bs = "cr"), data = dat)
 #        metagam::strip_rawdata(mod)
 #        })
-#      metagam::metagam(models, nsim = 1000, ci_alpha = .05)$meta_pval
+#      fit <- metagam::metagam(models, nsim = 1000, ci_alpha = .05)
+#      fit$simulation_results$`s(x)`$pval
 #    }
 #  )
 #  stopCluster(cl)
@@ -145,6 +151,7 @@ summary(meta_analysis)
 #       sort(as.numeric(unlist(pvals))),
 #       xlab = "Theoretical quantile",
 #       ylab = "Data quantile")
+#  abline(0, 1)
 #  dev.off()
 
 ## ---- eval=FALSE--------------------------------------------------------------
@@ -157,7 +164,8 @@ summary(meta_analysis)
 #        mod <- mgcv::gam(y ~ s(x, bs = "cr"), data = dat)
 #        metagam::strip_rawdata(mod)
 #        })
-#      metagam::metagam(models, nsim = 1000, ci_alpha = .05)$meta_pval
+#      fit <- metagam::metagam(models, nsim = 1000, ci_alpha = .05)
+#      fit$simulation_results$`s(x)`$pval
 #    }
 #  )
 #  stopCluster(cl)
@@ -166,4 +174,5 @@ summary(meta_analysis)
 #       sort(as.numeric(unlist(pvals))),
 #       xlab = "Theoretical quantile",
 #       ylab = "Data quantile")
+#  abline(0, 1)
 

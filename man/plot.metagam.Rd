@@ -4,24 +4,34 @@
 \alias{plot.metagam}
 \title{Plot estimated smooth terms}
 \usage{
-\method{plot}{metagam}(x, ...)
+\method{plot}{metagam}(x, term = NULL, ci = "none", legend = FALSE, only_meta = FALSE, ...)
 }
 \arguments{
 \item{x}{Object returned by \code{\link{metagam}}.}
 
+\item{term}{The smooth term to plot. Defaults to \code{NULL}, which means
+that the first term is plotted.}
+
+\item{ci}{Type of confidence bands to plot around the meta-analytic fit.
+Defaults to "none", which means the no bands are plotted. Other options are
+"simultaneous", "pointwise", and "both". Simultaneous confidence bands
+require that \code{\link{metagam}} was run with \code{nsim} not equal to
+\code{NULL}.}
+
+\item{legend}{Logical specifying whether or not to plot a legend. Defaults to
+\code{FALSE}.}
+
+\item{only_meta}{Logical specifying whether to include the fits for each
+study, or to only plot the meta-analytic fit. Defaults to \code{FALSE}.}
+
 \item{...}{Other arguments to plot.}
 }
 \value{
-A ggplot object plotting a smooth term of interest along an axis. The meta-analytic
-fit is shown as a solid black line, and the cohort fits are shown as dashed lines, separated by
-color codes.
+The function is called for its side effect of producing a plot.
 }
 \description{
-Plot the meta-analytic estimate of a smooth term along with the separate fits in each cohort.
-}
-\details{
-This function currently works for meta-analytic estimates of a single smooth term, which can be either
-univariate or bivariate. It also works for alternatively meta-analysis of response or link functions.
+Plot the meta-analytic estimate of a smooth term along with the separate fits
+in each cohort.
 }
 \examples{
 library(metagam)
@@ -47,11 +57,16 @@ meta_analysis <- metagam(models, terms = "s(x1)", grid_size = 30)
 ## We can print some information
 summary(meta_analysis)
 
-## We can plot the fit
+## We can plot the meta-analytic fit together with the individual fits
 plot(meta_analysis)
+plot(meta_analysis, ci = "pointwise")
 
 ## We can also compute p-values and simultaneous confidence intervals, by setting the nsim argument.
 ## For details, see the separate vignette.
-meta_analysis <- metagam(models, terms = "s(x0)", grid_size = 30, nsim = 1000)
-summary(meta_analysis)
+\dontrun{
+  meta_analysis <- metagam(models, terms = "s(x0)", grid_size = 30, nsim = 1000)
+  summary(meta_analysis)
+  plot(meta_analysis, ci = "both")
+  plot(meta_analysis, ci = "simultaneous")
+}
 }

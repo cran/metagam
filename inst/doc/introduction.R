@@ -49,3 +49,9 @@ summary(metafit)
 ## ----out.width="60%", fig.align="center"--------------------------------------
 plot(metafit)
 
+## ----out.width="60%", fig.align="center"--------------------------------------
+library(ggplot2)
+plot(metafit, ci = "pointwise", only_meta = TRUE) + 
+  theme_bw() + 
+  theme(panel.grid = element_blank())
+

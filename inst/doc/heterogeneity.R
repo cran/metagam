@@ -30,11 +30,7 @@ models <- lapply(datasets, function(dat){
 meta_analysis <- metagam(models, type = "response")
 
 ## -----------------------------------------------------------------------------
-plot(meta_analysis)
-
-## -----------------------------------------------------------------------------
-plot(meta_analysis) + 
-  ggplot2::scale_colour_brewer(palette = "Set1")
+plot(meta_analysis, legend = TRUE)
 
 ## -----------------------------------------------------------------------------
 plot_heterogeneity(meta_analysis)

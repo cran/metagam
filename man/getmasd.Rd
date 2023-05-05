@@ -4,16 +4,16 @@
 \alias{getmasd}
 \title{Get maximum of the absolute standard deviations}
 \usage{
-getmasd(mod, grid, nmc, terms)
+getmasd(mod, newdat, nsim, term)
 }
 \arguments{
 \item{mod}{Object of class "striprawdata", returned from \code{\link{strip_rawdata}}.}
 
-\item{grid}{Grid of values over which to create a simultaneous confidence interval.}
+\item{newdat}{Grid of values over which to create a simultaneous confidence interval.}
 
-\item{nmc}{Number of Monte Carlo samples.}
+\item{nsim}{Number of Monte Carlo samples.}
 
-\item{terms}{Character vector of smooth terms.}
+\item{term}{Character vector of smooth terms.}
 }
 \value{
 A vector of maxima of absolute standard deviations.

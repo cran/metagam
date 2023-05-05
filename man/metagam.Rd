@@ -13,49 +13,54 @@ metagam(
   method = "FE",
   nsim = NULL,
   ci_alpha = 0.05,
-  intercept = FALSE,
   restrict_range = NULL
 )
 }
 \arguments{
-\item{models}{List of generalized additive models, each of which has been returned
-by \code{\link{strip_rawdata}}. If the list is named, the names will be used in the output.}
+\item{models}{List of generalized additive models, each of which has been
+returned by \code{\link{strip_rawdata}}. If the list is named, the names
+will be used in the output.}
 
-\item{grid}{Grid of values of the explanatory variables over which to compute the
-estimated smooth terms. Defaults to \code{NULL}, which means that a grid is set up
-for the smooth terms defined by the \code{terms} argument, with length given by
-\code{grid_size} for numeric variables and a single value of each factor variable.}
+\item{grid}{Grid of values of the explanatory variables over which to compute
+the estimated smooth terms. Defaults to \code{NULL}, which means that a
+grid is set up for the smooth terms defined by the \code{terms} argument,
+with length given by \code{grid_size} for numeric variables and a single
+value of each factor variable.}
 
-\item{grid_size}{Numeric value giving the number of elements to use in the grid of explanatory
-variables when \code{grid=NULL}. When multiple terms are supplied, each combination of
-values of explanatory variables are generated, and the number of grid
-points becomes \code{grid_size} to the power of the number of terms.}
+\item{grid_size}{Numeric value giving the number of elements to use in the
+grid of explanatory variables when \code{grid=NULL}. When multiple terms
+are supplied, each combination of values of explanatory variables are
+generated, and the number of grid points becomes \code{grid_size} to the
+power of the number of terms.}
 
-\item{type}{Type of prediction to use. Defaults to \code{"iterms"}. Available options
-are \code{"iterms"}, \code{"link"}, and \code{"response"}. See the documentation
-of \code{mgcv::predict.gam} for details. Note that \code{type="terms"} is not supported,
-since it may result in estimated zero standard deviation for smooth terms.}
+\item{type}{Type of prediction to use. Defaults to \code{"iterms"}. Available
+options are \code{"iterms"}, \code{"link"}, and \code{"response"}. See the
+documentation of \code{mgcv::predict.gam} for details. Note that
+\code{type="terms"} is not supported, since it may result in estimated zero
+standard deviation for smooth terms.}
 
-\item{terms}{Character vector of terms, smooth or parametric, to be included in function estimate.
-Only used if \code{type="iterms"}. Defaults to \code{NULL}, which means
-that the first smooth term when listed in alphabetic order is taken.}
+\item{terms}{Character vector of terms, smooth or parametric, to be included
+in function estimate. Only used if \code{type="iterms"}. Defaults to
+\code{NULL}, which means that the first smooth term when listed in
+alphabetic order is taken.}
 
-\item{method}{Method of meta analysis, passed on to \code{metafor::rma.uni}. Defaults to \code{"FE"}. See the documentation to
-\code{metafor::rma} for all available options.}
+\item{method}{Method of meta analysis, passed on to \code{metafor::rma.uni}.
+Defaults to \code{"FE"}. See the documentation to \code{metafor::rma} for
+all available options.}
 
-\item{nsim}{Number of simulations to conduct in order to compute p-values and simultaneous
-confidence bands for the meta-analytic fit. Defaults to \code{NULL}, which means that no simulations
-are performed.}
+\item{nsim}{Number of simulations to conduct in order to compute p-values and
+simultaneous confidence bands for the meta-analytic fit. Defaults to
+\code{NULL}, which means that no simulations are performed. Only used if
+\code{type="iterms"}.}
 
-\item{ci_alpha}{Significance level for simultaneous confidence bands. Ignored if \code{nsim} is \code{NULL}, and defaults to 0.05.}
+\item{ci_alpha}{Significance level for simultaneous confidence bands. Ignored
+if \code{nsim} is \code{NULL}, and defaults to 0.05.}
 
-\item{intercept}{logical defining whether or not to include the intercept in each smooth
-term. Only applies when \code{type = "iterms"}.}
-
-\item{restrict_range}{Character vector of explanatory variables to restrict such that only
-values within the range for each cohort contribute to the meta-analysis. Default to \code{NULL},
-which means that each model contributes across the whole range specified by \code{grid}. Currently
-not implemented.}
+\item{restrict_range}{Character vector of explanatory variables to restrict
+such that only values within the range for each cohort contribute to the
+meta-analysis. Default to \code{NULL}, which means that each model
+contributes across the whole range specified by \code{grid}. Currently not
+implemented.}
 }
 \value{
 An object of type metagam.
@@ -64,13 +69,14 @@ An object of type metagam.
 Meta-analysis of generalized additive models
 }
 \details{
-It is currently assumed that all models have been fit with the same smooth terms,
-although they do not need to have the same basis functions or knot placement. Future versions
-will also include meta-analysis of parametric terms in the models.
+It is currently assumed that all models have been fit with the same
+  smooth terms, although they do not need to have the same basis functions or
+  knot placement. Future versions will also include meta-analysis of
+  parametric terms in the models.
 
-p-values are truncated below at 1e-16 before computing meta-analytic p-values
-to ensure that no values are identically zero, which would imply that the
-alternative hypothesis be true with no uncertainty.
+  p-values are truncated below at 1e-16 before computing meta-analytic
+  p-values to ensure that no values are identically zero, which would imply
+  that the alternative hypothesis be true with no uncertainty.
 }
 \examples{
 library(metagam)
@@ -96,11 +102,16 @@ meta_analysis <- metagam(models, terms = "s(x1)", grid_size = 30)
 ## We can print some information
 summary(meta_analysis)
 
-## We can plot the fit
+## We can plot the meta-analytic fit together with the individual fits
 plot(meta_analysis)
+plot(meta_analysis, ci = "pointwise")
 
 ## We can also compute p-values and simultaneous confidence intervals, by setting the nsim argument.
 ## For details, see the separate vignette.
-meta_analysis <- metagam(models, terms = "s(x0)", grid_size = 30, nsim = 1000)
-summary(meta_analysis)
+\dontrun{
+  meta_analysis <- metagam(models, terms = "s(x0)", grid_size = 30, nsim = 1000)
+  summary(meta_analysis)
+  plot(meta_analysis, ci = "both")
+  plot(meta_analysis, ci = "simultaneous")
+}
 }

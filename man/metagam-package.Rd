@@ -3,34 +3,25 @@
 \docType{package}
 \name{metagam-package}
 \alias{metagam-package}
-\alias{expr}
-\alias{enquo}
-\alias{enquos}
-\alias{sym}
-\alias{syms}
-\alias{.data}
-\alias{:=}
-\alias{as_name}
-\alias{as_label}
 \title{metagam: Meta-analysis of generalized additive models.}
 \description{
 The main functions in the metagam package are described below.
 }
 \section{Stripping rawdata}{
-
-The function \code{\link{strip_rawdata}} takes a fit produced by the mgcv
-package and removes all individual participants data.
+ The function \code{\link{strip_rawdata}} takes a
+  fit produced by functions in packages \code{mgcv} or \code{gamm4} and
+  removes all individual participants data.
 }
 
 \section{Meta-analysis}{
-
-The function \code{\link{metagam}} takes a list of fits produced by
-\code{\link{strip_rawdata}} and computes meta-analytic fits.
+ The function \code{\link{metagam}} takes a list of
+  fits produced by \code{\link{strip_rawdata}} and computes meta-analytic
+  fits.
 }
 
 \section{Plotting}{
-
-The functions \code{\link{plot_dominance}} and \code{\link{plot_heterogeneity}}
-can be used to study the meta-analytic fit computed by \code{\link{strip_rawdata}}.
+ The functions \code{\link{plot_dominance}} and
+  \code{\link{plot_heterogeneity}} can be used to study the meta-analytic fit
+  computed by \code{\link{strip_rawdata}}.
 }
 
