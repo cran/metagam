@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -10,7 +10,7 @@ library("metagam")
 library("mgcv")
 library("metafor")
 
-## ---- echo=FALSE--------------------------------------------------------------
+## ----echo=FALSE---------------------------------------------------------------
 simulate_data <- function(){
   dat1 <- data.frame(x = runif(100))
   dat1$y <- dat1$x + rnorm(100, sd = .7)
@@ -49,12 +49,12 @@ plot(metafit, ci = "pointwise", legend = FALSE)
 ## -----------------------------------------------------------------------------
 metafit$pvals
 
-## ---- eval=FALSE--------------------------------------------------------------
-#  library("metap")
-#  allmetap(p = unlist(lapply(metafit$pvals, function(x) as.data.frame(x)[, "p-value"])),
-#           method = "all")
+## ----eval=FALSE---------------------------------------------------------------
+# library("metap")
+# allmetap(p = unlist(lapply(metafit$pvals, function(x) as.data.frame(x)[, "p-value"])),
+#          method = "all")
 
-## ---- echo=FALSE--------------------------------------------------------------
+## ----echo=FALSE---------------------------------------------------------------
 structure(list(p = list(logitp = 5.61819601706602e-07, maximump = 1.25713383795263e-06, 
     meanp = NA_real_, meanz = 6.75835070011165e-08, minimump = 7.22516917847225e-06, 
     sumlog = 8.23242533258099e-08, sump = 6.32623953067482e-07, 
@@ -125,54 +125,54 @@ names(models) <- paste("Model", letters[1:5])
 meta_analysis <- metagam(models, terms = "s(x2)", grid_size = 100,
                          nsim = 10000, ci_alpha = .05)
 
-## ---- fig.height=6, fig.width=6-----------------------------------------------
+## ----fig.height=6, fig.width=6------------------------------------------------
 plot(meta_analysis, ci = "both", legend = TRUE)
 
 ## -----------------------------------------------------------------------------
 summary(meta_analysis)
 
-## ---- eval=FALSE, echo=FALSE--------------------------------------------------
-#  library(parallel)
-#  cl <- makeCluster(10)
-#  pvals <- parLapply(
-#    cl = cl, X = 1:100, fun = function(x){
-#      models <- lapply(1:5, function(i){
-#        dat <- data.frame(x = runif(100), y = rnorm(100))
-#        mod <- mgcv::gam(y ~ s(x, bs = "cr"), data = dat)
-#        metagam::strip_rawdata(mod)
-#        })
-#      fit <- metagam::metagam(models, nsim = 1000, ci_alpha = .05)
-#      fit$simulation_results$`s(x)`$pval
-#    }
-#  )
-#  stopCluster(cl)
-#  png("figures/quantile_plot.png")
-#  plot(qunif(seq(from = 0, to = 1, length.out = 100)),
-#       sort(as.numeric(unlist(pvals))),
-#       xlab = "Theoretical quantile",
-#       ylab = "Data quantile")
-#  abline(0, 1)
-#  dev.off()
+## ----eval=FALSE, echo=FALSE---------------------------------------------------
+# library(parallel)
+# cl <- makeCluster(10)
+# pvals <- parLapply(
+#   cl = cl, X = 1:100, fun = function(x){
+#     models <- lapply(1:5, function(i){
+#       dat <- data.frame(x = runif(100), y = rnorm(100))
+#       mod <- mgcv::gam(y ~ s(x, bs = "cr"), data = dat)
+#       metagam::strip_rawdata(mod)
+#       })
+#     fit <- metagam::metagam(models, nsim = 1000, ci_alpha = .05)
+#     fit$simulation_results$`s(x)`$pval
+#   }
+# )
+# stopCluster(cl)
+# png("figures/quantile_plot.png")
+# plot(qunif(seq(from = 0, to = 1, length.out = 100)),
+#      sort(as.numeric(unlist(pvals))),
+#      xlab = "Theoretical quantile",
+#      ylab = "Data quantile")
+# abline(0, 1)
+# dev.off()
 
-## ---- eval=FALSE--------------------------------------------------------------
-#  library(parallel)
-#  cl <- makeCluster(10)
-#  pvals <- parLapply(
-#    cl = cl, X = 1:100, fun = function(x){
-#      models <- lapply(1:5, function(i){
-#        dat <- data.frame(x = runif(100), y = rnorm(100))
-#        mod <- mgcv::gam(y ~ s(x, bs = "cr"), data = dat)
-#        metagam::strip_rawdata(mod)
-#        })
-#      fit <- metagam::metagam(models, nsim = 1000, ci_alpha = .05)
-#      fit$simulation_results$`s(x)`$pval
-#    }
-#  )
-#  stopCluster(cl)
-#  
-#  plot(qunif(seq(from = 0, to = 1, length.out = 100)),
-#       sort(as.numeric(unlist(pvals))),
-#       xlab = "Theoretical quantile",
-#       ylab = "Data quantile")
-#  abline(0, 1)
+## ----eval=FALSE---------------------------------------------------------------
+# library(parallel)
+# cl <- makeCluster(10)
+# pvals <- parLapply(
+#   cl = cl, X = 1:100, fun = function(x){
+#     models <- lapply(1:5, function(i){
+#       dat <- data.frame(x = runif(100), y = rnorm(100))
+#       mod <- mgcv::gam(y ~ s(x, bs = "cr"), data = dat)
+#       metagam::strip_rawdata(mod)
+#       })
+#     fit <- metagam::metagam(models, nsim = 1000, ci_alpha = .05)
+#     fit$simulation_results$`s(x)`$pval
+#   }
+# )
+# stopCluster(cl)
+# 
+# plot(qunif(seq(from = 0, to = 1, length.out = 100)),
+#      sort(as.numeric(unlist(pvals))),
+#      xlab = "Theoretical quantile",
+#      ylab = "Data quantile")
+# abline(0, 1)
 
